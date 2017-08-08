@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/tab.css"/>
+	</head>
+	<body>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<script type="text/javascript">
+			var oLi=document.getElementsByTagName('li');
+			var oDiv=document.getElementsByTagName('div');
+			for(var i=0;i<oLi.length;i++){				
+				oLi[i].onclick=function(){					
+					for(var j=0;j<oLi.length;j++){
+						oLi[j].style.background="";
+						oDiv[j].style.display='none';
+						if(oLi[j]==this){
+							oDiv[j].style.display="block";
+						}
+					}
+					this.style.background="pink";
+				}				
+			}
+		</script>
+	</body>
+</html>

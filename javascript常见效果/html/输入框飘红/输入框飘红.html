@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<textarea name="" rows="5" cols="8" id="tip" maxlength="10"></textarea>
+		<p>还可以输入<span id="leave"></span>个字</p>
+		<script type="text/javascript">
+			leave.innerHTML=tip.maxLength;
+			tip.onkeyup=function(){
+				leave.innerHTML=tip.maxLength-tip.value.length;
+				if(leave.innerHTML<="0"){
+					tip.style.background="red";
+					setTimeout(function(){
+						tip.style.background="";
+					},10)
+				}
+			}
+		</script>
+	</body>
+</html>

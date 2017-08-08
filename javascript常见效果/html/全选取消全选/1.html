@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li><input type="checkbox" name="" id="" />苹果</li>
+			<li><input type="checkbox" name="" id="" />鸭梨</li>
+			<li><input type="checkbox" name="" id="" />香蕉</li>
+			<li><input type="checkbox" name="" id="" />葡萄</li>
+			<li><input type="checkbox" name="" id="" />山竹</li>
+			<li><input type="checkbox" name="" id="" />芒果</li>
+			<li><input type="checkbox" name="" id="" />桃子</li>
+			<li><input type="checkbox" name="" id="" />西瓜</li>
+		</ul>
+		<p><button id="btn1">全选</button><button id="btn2">取消</button></p>
+		<script type="text/javascript">
+			var oCheckbox=document.getElementsByTagName('input');
+			btn1.onclick=function(){
+				for(var i=0;i<oCheckbox.length;i++){
+					oCheckbox[i].checked=true;
+				}				
+			}
+			btn2.onclick=function(){
+				for(var i=0;i<oCheckbox.length;i++){
+					oCheckbox[i].checked=false;
+				}				
+			}
+		</script>
+	</body>
+</html>

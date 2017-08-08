@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/tab.css"/>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<ul id="ul">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<script type="text/javascript">
+			var oUl=document.getElementById('ul');
+			var oLi=oUl.getElementsByTagName('li');
+			var oDiv=document.getElementsByTagName('div');
+			oUl.onclick=function(e){
+				for(var i=0;i<oLi.length;i++){
+					if(e.target==oLi[i]){
+						e.target.style.background="pink";
+						oDiv[i].style.display="block";
+					}else{
+						oLi[i].style.background="";
+						oDiv[i].style.display="none";
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
