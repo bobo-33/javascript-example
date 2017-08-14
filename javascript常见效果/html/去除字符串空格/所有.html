@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function trim(str,a){//第二个参数=g
+				var result;
+				result=str.replace((/(^\s*)|(\s*$)/g),"");
+				
+				if(a.toLowerCase()=="g"){
+					result=result.replace(/\s/g,"")
+				}
+				return result;
+			}
+			trim('   vmkb gtrmh  hthm hy   ',"g")
+			console.log(trim('   vmkb gtrmh  hthm hy   ',"g"))
+		</script>
+	</body>
+</html>
