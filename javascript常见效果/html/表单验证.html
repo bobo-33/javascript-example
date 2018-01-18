@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin: 0;padding: 0;list-style: none;font-family: "微软雅黑";font-weight: 300;}
+	.clear:after{
+	  display:block; 
+	  content:"clear"; 
+	  height:0; 
+	  clear:both;
+	  visibility:hidden;
+	}
+	.clear{zoom:1;}
+	.title{
+		text-align: center;
+	}
+	.title h1{
+		font-size: 40px;
+		line-height: 86px;
+	}
+	.title img{
+		vertical-align: middle;
+		margin-right: 50px;
+	}
+	.info{
+		width: 900px;
+		margin: 0 auto;
+		border-top:1px solid #E4E4E4;
+		border-left:1px solid #E4E4E4;
+		border-right:1px solid #E4E4E4;
+		padding: 50px;
+	}
+	.info h2{
+		font-size: 1.5em;
+	}
+	.info ul li{
+		font-size: 20px;
+		margin-top: 25px;
+	}
+	.info ul li input{
+		width: 300px;
+		height: 35px;
+	}
+	.info ul .sex input{
+		width: 25px;
+		height: 25px;
+		vertical-align: middle;
+		margin: 0 15px;
+	}
+	.info .mess{
+		margin-left: 15px;
+	}
+	#submit{
+		width: 300px;
+		height: 40px;
+		line-height: 40px;
+		font-size: 30px;
+		background: #E4E4E4;
+		color: #000;
+		text-align: center;
+		border: none;
+		outline: none;
+	}
+	</style>
+</head>
+<body>
+	<div class="title clear">
+		<h1>讲座反馈表</h1>
+	</div>
+	<div class="info">
+		<h2>基本信息（请完整填写，便于我们提供免费技术咨询。）</h2>
+		<ul>
+			<li>姓&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;名：<input type="text" id="uname"/><span class="mess"></span></li>
+			<li class="sex">性&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;别：<input type="radio" name="sex" value="男" id="man" />男<input type="radio" name="sex" value="女" id="women" />女<span class="mess"></li>
+			<li>手&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;机：<input type="text" id="tel"/><span class="mess"></li>
+			<li>专业及年级：<input type="text" id="clas"/><span class="mess"></li>
+			<li>Q&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Q：<input type="text" id="qq"/><span class="mess"></li>
+			<li>宿&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;舍：<input type="text" id="dorm"/><span class="mess"></li>
+			<li style="text-align:center;"><input type="button" id="submit" value="提交"></li>
+		</ul>
+	</div>
+	<div id="message"></div>
+	<script>
+	var telreg = /(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7}/;
+	var qqreg = /[1-9][0-9]{4,}/;
+	var nullreg = /\S/;
+	var flag = 0;
+	var spans = document.getElementsByTagName('span');
+	uname.onblur = function () {
+		if(nullreg.test(uname.value)){
+			spans[0].innerHTML = "OK!";
+			flag++;
+		}else{
+			spans[0].innerHTML = "请输入姓名!";
+		}
+	}
+	clas.onblur = function () {
+		if(nullreg.test(clas.value)){
+			spans[3].innerHTML = "OK!";
+			flag++;
+		}else{
+			spans[3].innerHTML = "请输入年级!";
+		}
+	}
+	dorm.onblur = function () {
+		if(nullreg.test(dorm.value)){
+			spans[5].innerHTML = "OK!";
+			flag++;
+		}else{
+			spans[5].innerHTML = "请输入宿舍!";
+		}
+	}
+	man.onclick = women.onclick = function(){
+		spans[1].innerHTML = "OK!";
+		flag++;
+	}
+	tel.onblur = function(){
+		if(telreg.test(tel.value)){
+			spans[2].innerHTML = "OK!";
+			flag++;
+		}else{
+			spans[2].innerHTML = "请输入正确的手机号!";
+		}
+	}
+	qq.onblur = function(){
+		if(qqreg.test(qq.value)){
+			spans[4].innerHTML = "OK!";
+			flag++;
+		}else{
+			spans[4].innerHTML = "请输入正确的QQ号!";
+		}
+	}
+	submit.onclick = function(){
+		if(flag == 6){
+			message.innerHTML = "您输入的内容是：<br>姓名："+uname.value+"<br>性别："+(man.checked?man.value:women.value)+"<br>手机号："+tel.value+"<br>专业及年级："+clas.value+"<br>QQ："+qq.value+"<br>宿舍："+dorm.value;	
+		}else{
+			alert("信息不全请补全!");
+		}
+	}
+	</script>
+</body>
+</html>
