@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title></title>
+    <style type="text/css">
+        body{
+            padding: 0px;
+            margin: 0px;
+        }
+        div{
+            padding: 0px;
+            margin: 0px;
+            width: 100%;
+            height: 1049px;
+            text-align: center;
+            position: absolute;
+        }
+        div img{
+            width: 100%;
+        }
+    </style>
+    <script src="common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+    <div id="page1">
+       <img src="images/001.jpg" al="" />
+    </div>
+    <div id="page2">
+       <img src="images/002.jpg" al="" />
+    </div>
+    <div id="page3">
+       <img src="images/003.jpg" al="" />
+    </div>
+    <div id="page4">
+       <img src="images/004.jpg" al="" />
+    </div>
+    <script type="text/javascript">
+        //定义保存开始和结束时的坐标变量
+        var startX=endX=startY=endY=0;
+        //定义当前索引号
+        var index=4;
+        $(function(){
+            document.addEventListener("touchstart",touchstart,false);
+            function touchstart(d) {
+                try {
+                    if (d.touches[0]) {
+                        startX = d.touches[0].pageX;
+                        startY = d.touches[0].pageY;
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            document.addEventListener("touchmove",touchmove,false);
+            function touchmove(d) {
+                try {
+                    if (d.touches[0]) {
+                        endX = d.touches[0].pageX;
+                        endY = d.touches[0].pageY;
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            document.addEventListener("touchend",touchend,false);
+            function touchend() {
+                //比较两个值决定用户touch动作的方向
+                if(endY<startY){
+                    if(index==1) return;
+                    var name="#page"+index;
+                    $(name).slideUp(2000);
+                    index--;
+                }else{
+                    if(index==4) return;
+                    index++;
+                    var name="#page"+index;
+                    $(name).slideDown(2000);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

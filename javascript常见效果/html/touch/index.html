@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title></title>
+    <style type="text/css">
+        body{
+            padding: 0px;
+            margin: 0px;
+        }
+        div{
+            padding: 0px;
+            margin: 0px;
+            width: 100%;
+            text-align: center;
+            position: absolute;
+        }
+        div .img{
+            width: 100%;
+            height: 100%;
+        }
+        #img1,#img2,#img3,#img4{
+            left:0px;
+            top:0px;
+            position: absolute;
+        }
+    </style>
+    <script src="common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+    <div id="page1">
+       <img class="img" src="images/001.jpg" al="" />
+       <img id="img1" src="images/01.png" al="" style="display:none">
+    </div>
+    <div id="page2">
+       <img class="img" src="images/002.jpg" al="" />
+       <img id="img2" src="images/02.png" al="" style="display:none">
+    </div>
+    <div id="page3">
+       <img class="img" src="images/003.jpg" al="" />
+       <img id="img3" src="images/03.png" al="" style="display:none">
+    </div>
+    <div id="page4">
+       <img class="img" src="images/004.jpg" al="" />
+       <img id="img4" src="images/04.png" al="" style="display:none">
+    </div>
+
+    <script type="text/javascript">
+        //定义保存开始和结束时的坐标变量
+        var startX=endX=startY=endY=0;
+        //定义当前索引号
+        var index=4;
+        function initImg(){
+            $("#img1,#img2,#img3,#img4").css({
+                display:'none',
+                left:'0px',
+                top:'0px'
+            })
+        }
+        function animateImg(i) {
+            initImg();
+            setTimeout(function () {
+                var name = "#img" + i;
+                if(i==4) {
+                    $(name).show().animate({
+                        left: "220px",
+                        top: "530px"
+                    }, 3000)
+                }else if(i==3){
+                    $(name).show(1000).css({
+                        top:"0px",
+                        right:"0px"
+                    }).animate({
+                        left: "120px",
+                        top: "430px"
+                    }, 1000)
+                }else if(i==2){
+                    $(name).show(2000).animate({
+                        left: "320px",
+                        top: "230px"
+                    }, 1000)
+                } else if(i==1){
+                    $(name).show(3000).animate({
+                        left: "220px",
+                        top: "530px"
+                    }, 1000)
+                }
+            }, 1000)
+        }
+        animateImg(index);
+        $(function(){
+            document.addEventListener("touchstart",touchstart,false);
+            function touchstart(d) {
+                try {
+                    if (d.touches[0]) {
+                        startX = d.touches[0].pageX;
+                        startY = d.touches[0].pageY;
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            document.addEventListener("touchmove",touchmove,false);
+            function touchmove(d) {
+                try {
+                    if (d.touches[0]) {
+                        endX = d.touches[0].pageX;
+                        endY = d.touches[0].pageY;
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            document.addEventListener("touchend",touchend,false);
+            function touchend() {
+                //比较两个值决定用户touch动作的方向
+                if(endY<startY){
+                    if(index==1) return;
+                    var name="#page"+index;
+                    $(name).slideUp(500,function(){
+                        switch(index){
+                            case 3:
+                                animateImg(index);
+                                break;
+                            case 2:
+                                animateImg(index);
+                                break;
+                            case 1:
+                                animateImg(index);
+                                break;
+                        }
+                    });
+                    index--;
+                }else{
+                    if(index==4) return;
+                    index++;
+                    var name="#page"+index;
+                    $(name).slideDown(500,function(){
+                        switch(index){
+                            case 4:
+                                animateImg(index);
+                                break;
+                            case 3:
+                                animateImg(index);
+                                break;
+                            case 2:
+                                animateImg(index);
+                                break;
+                        }
+                    });
+                }
+            }
+        })
+    </script>
+</body>
+</html>
