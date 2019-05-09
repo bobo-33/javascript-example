@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="UTF-8">
+    <title></title>
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	
+  </head>
+  
+  <body>
+	  <script type="text/javascript">
+	  	function matchReg(str){
+			    let reg=/<\/?.+?\/?>/g;
+			    console.log(str.replace(reg,''));
+			  }
+			  matchReg(`<p>去除所有html标签,<img/><My-Tag class="abc" value="test">自定义标签也可以去除哦</My-Tag></p>`)
+	  </script>
+  </body>
+</html>
